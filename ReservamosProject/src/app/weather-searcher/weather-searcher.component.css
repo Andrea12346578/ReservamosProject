@@ -1,0 +1,16 @@
+.formSearcher{
+    display: contents;
+}
+
+mat-icon{
+    transform: scale(4);
+    color: white;
+}
+
+mat-card-content{
+    padding: 50px;
+}
+
+mat-card{
+    margin: 2% 0;
+}
