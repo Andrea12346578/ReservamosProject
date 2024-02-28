@@ -21,10 +21,23 @@ export class WeatherSearcherComponent implements OnInit{
     cityData: ['', []]
   });
 
+  dates: any[] = [];
+  maxDate: any;
   cities: any;
-  weather: any;
+  weather: any = [];
   ngOnInit()
   {
+    var someDate = new Date();
+    var numberOfDaysToAdd = 5;
+    var result = someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+    for(let i = 0; i < numberOfDaysToAdd; i++)
+    {
+      var someDate = new Date();
+      var result = someDate.setDate(someDate.getDate() + i);
+      this.dates.push(new Date(result))
+    }
+    this.maxDate = new Date(result);
+    console.log(new Date(result))
     this.form.valueChanges.subscribe(() => {
       this.onChangeCity()
     })
@@ -32,7 +45,6 @@ export class WeatherSearcherComponent implements OnInit{
 
   onChangeCity()
   {
-    this.weather = []
     this.service.getCoordinatesByCity(this.form.value.city).subscribe(data => {
       this.cities = data;
     })
@@ -41,14 +53,19 @@ export class WeatherSearcherComponent implements OnInit{
   onSelectedCity(city: any)
   {
     this.form.get('cityData')?.setValue(city);
+    this.weather = [];
   }
 
   search()
   {
     
     this.service.getWeather(this.form.value.cityData.lat,this.form.value.cityData.long).subscribe(data => {
-      console.log("data", data.list.slice(0, 5))
-      this.weather = data.list.slice(0, 5)
+      this.weather = data.list.filter((item:any) => new Date(item.dt_txt) < this.maxDate);
     })
+  }
+
+  validarFecha(date: any)
+  {
+    return this.weather.filter((item:any) => new Date(item.dt_txt).getTime() == date.getTime());
   }
 }

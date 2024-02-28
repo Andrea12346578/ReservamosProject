@@ -13,4 +13,9 @@ mat-card-content{
 
 mat-card{
     margin: 2% 0;
+    border-top: 1px solid;
+}
+
+mat-tab-header {
+    background: #4a4a4a !important;
 }
