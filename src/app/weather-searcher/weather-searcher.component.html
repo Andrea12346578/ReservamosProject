@@ -11,8 +11,8 @@
     </div>
 </form>
 <br>
-<div style="color: white;">
-    <mat-tab-group *ngIf="weather.length > 0" mat-stretch-tabs="false" mat-align-tabs="start" style="background: #4a4a4a;">
+<div>
+    <mat-tab-group *ngIf="weather.length > 0" mat-stretch-tabs="false" mat-align-tabs="start">
         <mat-tab *ngFor="let date1 of weather" label="{{date1.date | date}}" >
                 <mat-card *ngFor="let data of date1.values">
                     <mat-card-header>

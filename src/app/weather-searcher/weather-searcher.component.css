@@ -4,7 +4,7 @@
 
 mat-icon{
     transform: scale(4);
-    color: white;
+    /*color: white;*/
 }
 
 mat-card-content{
@@ -17,5 +17,5 @@ mat-card{
 }
 
 mat-tab-header {
-    background: #4a4a4a !important;
+    /*background: #4a4a4a !important;*/
 }
